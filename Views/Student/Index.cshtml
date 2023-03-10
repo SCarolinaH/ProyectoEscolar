@@ -1,0 +1,641 @@
+﻿
+
+<h1>Students</h1>
+<h2>@TempData["Mensaje"]</h2>
+
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+
+
+<script src="https://kit.fontawesome.com/0f48d8c00d.js"></script>
+
+
+
+<script>
+    
+
+    function nuevo(){
+        $('#inputId').val("0");
+        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+    }
+
+</script>
+
+
+
+<script>
+
+    function editar(id){
+        let studentEdit = { Id: id };
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "/Student/GetStudent",
+                data: studentEdit,
+                dataType: "json",
+
+                success: function (data) {
+                    if(data.msg != undefined){
+                        alert(data.msg);
+                    }
+                    else{
+                        //data.$values;
+                        $('#inputId').val(data.id);
+                        $('#inputName').val(data.name);
+                        $('#inputStudent').val(data.studentCode);
+                        $('#inputPhone').val(data.phone);
+                        $('#BirthDate').val(data.birthDate.substring(0, 10));
+                        $('#Gender').val(data.gender);
+                        $('#inputAddress').val(data.address),
+                        $('#GradeId').val(data.gradeId);
+                        $('#gridCheck1').prop('checked', data.status);
+                        $('#inputComment').val(data.comments)
+
+                        actualizarListaImages(id);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(xhr.responseText);
+                    alert(thrownError);
+                    console.log(xhr);
+                }
+
+        });
+
+        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+
+    }
+
+    function eliminar(id){
+        let result = confirm("Delete:\r\nAre you sure?");
+        if(result == true){
+            // Se llama mediante ajax al metodo delete del controlador student
+            let studentDelete = {Id: id};
+
+            $.ajax(
+            {
+                type: "POST",
+                url: "/Student/Delete",
+                data: studentDelete,
+                dataType: "json",
+
+                success: function (data) {
+                    alert(data.msg);
+                    alert()
+                    cargarListado();// Si se elimino se actualiza la tabla mediante ajax
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                   // alert('Error no se puede eliminar')
+
+                    alert(xhr.status);  // 1
+                    alert(xhr.responseText); //2
+                    alert(thrownError); // 3
+                    console.log(xhr); //4
+                }
+
+                 
+            });
+        }
+    }
+
+
+
+    function cargarListado(){
+        $.ajax(
+        {
+            type: "GET",
+            url: "/Student/ListStudents",
+            dataType: "json",
+
+            success: function (data) {
+                if(data.$values.length > 0){
+                    let filasStudent = document.querySelector('#filasStudent');
+                    let filas = "";
+                    data.$values.forEach(objeto =>{
+                        filas +=`<tr>
+                                    <td>
+                                        <a href="#" onclick='editar(${objeto.id})' id="btnEditar" class="btn btn-secondary">Edit</a>
+                                        <a href="#" onclick='eliminar(${objeto.id})' class="btn btn-danger">Delete</a></td>
+                                <td>${objeto.id}</td>
+                                <td>${objeto.studentCode}</td>
+                                <td>${objeto.name}</td>
+                                <td>${objeto.phone}</td>
+                                <td>${objeto.gender}</td>
+                                <td>${objeto.grade}</td>
+                                <td>${objeto.comments}</td>
+                                <td>${objeto.birthDate}</td>
+                                <td>${objeto.address}</td>
+                                <td>${objeto.status}</td>
+                        </tr>`;
+                    });
+                    filasStudent.innerHTML = filas;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status +" "+xhr.responseText);
+                console.log(xhr);
+            }
+
+        });
+    }
+  
+    function saveStudent(){
+
+       
+        var student = {
+            Id: 0,
+            Name: $('#inputName').val(),
+            StudentCode: $('#inputStudent').val(),
+            Phone: $('#inputPhone').val(),
+            BirthDate: $('#BirthDate').val(),
+            Gender: $('#Gender').val(),
+            Address: $('#inputAddress').val(),
+            GradeId: parseInt($('#GradeId').val()),
+            Status: $('#gridCheck1').prop('checked'),
+            Comments: $('#inputComment').val()
+        };
+        console.log(student);
+        console.log(JSON.stringify(student));
+        $.ajax(
+        {
+            type: "POST",
+            url: "/Student/Create",
+            data: student,
+            dataType: "json",
+
+            success: function (data) {
+                alert(data.msg);
+                if(data.studentId!=0){
+                    if (FileServer.FilesServers.length != 0)// Significa que hay archivos que agregar al nuevo estudiante
+                        actualizarArchivosDB(data.studentId);
+                }
+
+                
+                
+                if (data.state == true){
+                    $("#myModal").modal("hide");
+                    document.getElementById("formStudent").reset();
+                    cargarListado();
+                }
+                   
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(xhr.responseText);
+                alert(thrownError);
+                console.log(xhr);
+            }
+               
+        });
+
+
+            
+    }
+
+    function editStudent(){
+        var student = {
+            Id: $("#inputId").val(),
+            Name: $('#inputName').val(),
+            StudentCode: $('#inputStudent').val(),
+            Phone: $('#inputPhone').val(),
+            BirthDate: $('#BirthDate').val(),
+            Gender: $('#Gender').val(),
+            Address: $('#inputAddress').val(),
+            GradeId: parseInt($('#GradeId').val()),
+            Status: $('#gridCheck1').prop('checked'),
+            Comments: $('#inputComment').val()
+        };
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "/Student/Edit",
+                data: student,
+                dataType: "json",
+
+                success: function (data) {
+                    alert(data.msg);
+                    
+                    if (FileServer.FilesServers.length != 0)
+                        actualizarArchivosDB(student.Id);
+
+                    if(data.state == true){
+                        cargarListado();
+                        document.getElementById("formStudent").reset();
+                        $("#myModal").modal("hide")
+                    }
+                        
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);   
+                    alert(xhr.responseText);  
+                    alert(thrownError);  
+                    console.log(xhr);
+                }
+
+            });
+    }
+
+
+
+    $(document).ready(function () {
+     
+        cargarListado();
+
+        $("#btnGuardar").click(function () {        
+            if($("#inputId").val()=="0")
+                saveStudent();
+            else
+                editStudent();
+        });
+
+        $("#myModal").on('hide.bs.modal', function () {
+            $('#inputId').val("0");
+            document.getElementById("formStudent").reset();
+        });
+
+      
+    });
+     
+
+
+</script>
+
+  
+
+
+
+
+
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mr-auto">
+                <a class="nav-link text-white"><h5>AVNC</h5></a>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown mr-3">
+            <a href="" class="nav-link dropdown-toggle text-white" data-toggle="dropdown"> Menu <i class="fas fa-user-circle"></i> </a>
+
+            <div class="dropdown-menu">
+                <a href="perfil.html" class="dropdown-item"><i class="fas fa-user"></i> Perfil</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Configuraciones</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-user-times"></i> Salir</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+
+
+    
+<div class="container" style="margin-top:20px;">
+
+     <table class="table">
+        <thead class="table table-warning">
+            <tr>
+                <th><a onclick="nuevo()" href="#" class="btn btn-primary">New</a></th>
+                    <th>Id</th>
+                    <th>Student Code</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Grade</th>
+                    <th>Comments</th>
+                    <th>BirthDate</th>
+                    <th>Address</th>
+                    <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="filasStudent">
+
+        </tbody>
+     </table>
+</div>
+
+
+
+
+<div class="modal fade" id="myModal" >
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Student</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+         <div class="modal-body">
+                <ul class="nav nav-tabs" style="margin-top:25px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#attachments">Attachments</a>
+                    </li>
+
+                </ul>
+
+
+            <div class="tab-content">
+                    <div class="tab-pane active container" id="details">
+                        <!-- Inicia details -->
+                        
+
+                        <form id="formStudent">
+                            <div class="form-row">
+                                <input type="hidden" id="inputId" value="0"/>
+                                <div class="form-group col-md-6">
+                                    <label for="inputStudent">Student Code</label>
+                                    <input type="text" class="form-control" id="inputStudent" placeholder="" >              
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Name</label>
+                                    <input type="Text" class="form-control" id="inputName" placeholder="" >
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputPhone">Phone</label>
+                                    <input type="Text" class="form-control" id="inputPhone" placeholder="" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="BirthDate">BirthDate</label>
+                                    <input id="BirthDate" type="date" placeholder="MM/DD/YYYY" class="form-control"  />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Gender</label>
+                                    <select id="Gender" class="form-control" asp-items="ViewBag.cbGenders"></select>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Address</label>
+                                    <input type="Text" class="form-control" id="inputAddress" placeholder="" >
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Grade</label>
+                                    <select id="GradeId" class="form-control" asp-items="ViewBag.cbGrades"></select>
+                                </div>
+
+                               <div class="form-group col-md-6">
+                                    <label class="form-label">Status</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1" >
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Active
+                                        </label>
+                                    </div>
+                                </div>
+
+                                            
+                                 
+
+                                <div class="form-group col-md-12">
+                                    <label for="inputComments">Comments</label>
+                                    <textarea class="form-control" id="inputComment" rows="3" style="resize:none;" required></textarea>
+                                </div>
+
+                            </div>
+                        </form>
+
+
+                        
+                        <!-- Finaliza details -->
+                    </div>
+
+
+                <div class="tab-pane container" id="attachments">
+                      
+                        <!-- Inicia Attachements -->
+  
+                        <div class="row form-group">
+                            <input type="file" class="form-control" onchange="subir()" id="files" name="files" multiple />
+                        </div>
+
+                        <div class="row form-group">
+                            <h4 class="col-12">Pending files to save</h4>
+                            <div class="col-12" id="filesList">
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <h4 class="col-12">Student files</h4>
+                            <div class="col-12" id="imagesList">
+
+                            </div>
+                        </div>
+                                             
+                        <script>
+                            function subir(){
+                                var fileUpload = $("#files").get(0);
+
+                                var files = fileUpload.files;
+
+                                var data = new FormData();
+
+                                for (var i = 0; i < files.length; i++) {
+
+                                    data.append(files[i].name, files[i]);
+
+                                }
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Student/UploadFilesAjax",
+                                    contentType: false,
+                                    processData: false,
+                                    data: data,
+                                    success: function (result) {
+                                        if (result.$values.length > 0){
+                                            result.$values.forEach(objeto => {
+                                                let archivo = new FileServer(objeto.fullpath, objeto.name, objeto.originalName);
+                                                FileServer.FilesServers.push(archivo);
+                                            });
+
+                                            actualizarListaArchivos();
+
+                                            let files = document.querySelector("#files");
+                                            files.value = "";
+                                        }
+
+
+                                    },
+
+                                    error: function () {
+                                        alert("There was error uploading files!");
+                                    }
+
+                                });
+
+                            }
+
+                        </script>
+
+
+                       <!-- Finaliza Attachements -->
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="mr-auto">
+                    <button id="btnGuardar" class="btn btn-success">SAVE</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+         </div>
+            
+   </div>
+</div>
+
+</div>
+
+
+<script>
+    class FileServer {
+        Fullpath
+        Name
+        OriginalName
+
+        static FilesServers = []
+        
+        constructor(FullPath, Name, OriginalName) {
+            this.Fullpath = FullPath;
+            this.Name = Name;
+            this.OriginalName = OriginalName;
+        }
+    }
+
+
+    function actualizarListaImages(id){
+        let imagesList = document.querySelector('#imagesList');
+        let archivos = "<ul>";
+
+        let fileUpdate = {
+            StudentId: id,
+            FilesServers: null
+        }
+
+        $.ajax(
+        {
+            type: "POST",
+                url: "/Student/obtenerImagesDB",
+            data: fileUpdate,
+            dataType: "json",
+
+            success: function (data) {
+          
+                console.log(data);
+                console.log(data.images.$values);
+                console.log(data.images.$values.length);
+                data.images.$values.forEach(objeto => {
+                    archivos += `<li style="margin-bottom:10px;"><img src="${objeto.fullpath}" style="width:100px;" /></li>`;
+                });
+
+                imagesList.innerHTML = archivos + "</ul>";
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(xhr.responseText);
+                alert(thrownError);
+                console.log(xhr);
+            }
+
+        });
+
+
+    }
+    
+
+    function actualizarListaArchivos(){
+        let filesList = document.querySelector('#filesList');
+        let archivos = "<ul>";
+
+
+
+        FileServer.FilesServers.forEach(objeto => {
+            archivos += `<li>${objeto.OriginalName} <a href="#" onclick='eliminarArchivo("${objeto.Name}")'><span style="color:white;" class="badge bg-danger">x</span></a></li>`;
+        });
+
+        filesList.innerHTML = archivos + "</ul>";
+    }
+
+    function eliminarArchivo(archivo){
+        let index = FileServer.FilesServers.findIndex(b => b.Name == archivo);
+        let busqueda = FileServer.FilesServers.find(b => b.Name == archivo);
+
+        $.ajax(
+        {
+            type: "POST",
+            url: "/Student/DeleteFile",
+            data: busqueda,
+            dataType: "json",
+
+            success: function (data) {
+                if (data.message == "Deleted") {
+                    FileServer.FilesServers.splice(index, 1);
+                    actualizarListaArchivos();
+                }
+ 
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(xhr.responseText);
+                alert();
+                console.log(xhr); 
+            }
+
+        });
+    }
+
+    function actualizarArchivosDB(id){
+        let fileUpdate = {
+            StudentId: id,
+            FilesServers: FileServer.FilesServers
+        }
+
+    
+        $.ajax(
+        {
+            type: "POST",
+            url: "/Student/ActualizarArchivosDB",
+            data: fileUpdate,
+            dataType: "json",
+
+            success: function (data) {
+                if (data.message == "Updated"){
+                    FileServer.FilesServers.splice(0);
+                    actualizarListaArchivos();
+                }
+                        
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(xhr.responseText);
+                alert(thrownError);
+                console.log(xhr);
+            }
+
+        });
+    }
+
+    $('#myModal').on('hidden.bs.modal', function (e) {
+        FileServer.FilesServers.splice(0);
+        actualizarListaArchivos();
+    })
+</script>

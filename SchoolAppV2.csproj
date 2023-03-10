@@ -1,0 +1,134 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Upload\**" />
+    <Compile Remove="wwwroot\NewFolder1\**" />
+    <Compile Remove="wwwroot\NewFolder2\**" />
+    <Content Remove="Views\Upload\**" />
+    <Content Remove="wwwroot\NewFolder1\**" />
+    <Content Remove="wwwroot\NewFolder2\**" />
+    <EmbeddedResource Remove="Views\Upload\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder2\**" />
+    <None Remove="Views\Upload\**" />
+    <None Remove="wwwroot\NewFolder1\**" />
+    <None Remove="wwwroot\NewFolder2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.bootstrap.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.bootstrap.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.bootstrap4.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.bootstrap4.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.dataTables.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.dataTables.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.foundation.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.foundation.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.jqueryui.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.jqueryui.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.semanticui.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\buttons.semanticui.min.css" />
+    <Content Include="datatables\Buttons-1.5.6\css\common.scss" />
+    <Content Include="datatables\Buttons-1.5.6\css\mixins.scss" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.bootstrap.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.bootstrap.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.bootstrap4.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.bootstrap4.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.colVis.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.colVis.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.flash.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.flash.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.foundation.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.foundation.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.html5.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.html5.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.jqueryui.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.jqueryui.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.print.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.print.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.semanticui.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\buttons.semanticui.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\dataTables.buttons.js" />
+    <Content Include="datatables\Buttons-1.5.6\js\dataTables.buttons.min.js" />
+    <Content Include="datatables\Buttons-1.5.6\swf\flashExport.swf" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.foundation.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.foundation.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.jqueryui.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.semanticui.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\jquery.dataTables.css" />
+    <Content Include="datatables\DataTables-1.10.18\css\jquery.dataTables.min.css" />
+    <Content Include="datatables\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="datatables\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="datatables\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="datatables\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="datatables\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <Content Include="datatables\DataTables-1.10.18\js\jquery.dataTables.min.js" />
+    <Content Include="datatables\datatables.css" />
+    <Content Include="datatables\datatables.js" />
+    <Content Include="datatables\datatables.min.css" />
+    <Content Include="datatables\datatables.min.js" />
+    <Content Include="datatables\JSZip-2.5.0\jszip.js" />
+    <Content Include="datatables\JSZip-2.5.0\jszip.min.js" />
+    <Content Include="datatables\pdfmake-0.1.36\pdfmake.js" />
+    <Content Include="datatables\pdfmake-0.1.36\pdfmake.min.js" />
+    <Content Include="datatables\pdfmake-0.1.36\vfs_fonts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\.editorconfig" />
+    <None Include="wwwroot\Rotativa\wkhtmltoimage.exe" />
+    <None Include="wwwroot\Rotativa\wkhtmltopdf.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Core" Version="2.46.3" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.3" />
+    <PackageReference Include="jTable" Version="2.4.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NLog" Version="5.0.4" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\User_Files\_Upload_Folder\" />
+  </ItemGroup>
+
+</Project>

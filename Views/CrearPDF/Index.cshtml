@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+
+
+
+
+
+
+
+
+@model List<ReportDTO>
+
+
+<h3>Student Report</h3>
+
+
+
+<table id="Students" class="table">
+    <thead class="table table-warning">
+        <tr>
+
+            <th>#</th>
+            <th>ID</th>
+            <th>Student Code</th>
+            <th>Student Name</th>
+            <th>Grade</th>
+            <th>Courses</th>
+            <th>Genders</th>
+            <th>BirthDate</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="filasStudentR">
+        @{
+            int i = 1;
+        }
+        @foreach(var item in Model){
+            <tr>
+                <td>@(i++)</td>
+                <td>@item.Id</td>
+                <td>@item.StudentCode</td>
+                <td>@item.Name</td>
+                <td>@item.Grade</td>
+                <td>@item.Courses</td>
+                <td>@item.Gender</td>
+                <td>@item.BirthDate</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+

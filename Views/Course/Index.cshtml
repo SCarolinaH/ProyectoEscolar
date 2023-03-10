@@ -1,0 +1,310 @@
+﻿
+
+<h1>Course</h1>
+<h>@TempData["Mensaje"]</h>
+
+<script>
+    
+    function nuevo(){
+        const sub = document.querySelector('#sub')
+        sub.innerHTML = "New Course";
+        $('#inputId').val("0");
+        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+    } 
+
+</script>
+
+
+
+<script>
+
+
+    function eliminar(id) {
+        let result = confirm("Delete:\r\nAre you sure?");
+        if (result == true) {
+            // Se llama mediante ajax al metodo delete del controlador course
+            let courseDelete = { Id: id };
+
+            $.ajax(
+            {
+                    type: "POST",
+                    url: "/Course/Delete",
+                    data: courseDelete,
+                    dataType: "json",
+
+                    success: function (data) {
+                        alert(data.msg);
+                        cargarListado();// Si se elimino se actualiza la tabla mediante ajax
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                        console.log(xhr);
+                    }
+
+            });
+        }
+    }
+
+
+
+
+
+    function editar(id) {
+        let courseEdit = { Id: id };
+        const sub = document.querySelector('#sub')
+        sub.innerHTML = "Edit Course";
+
+        $.ajax(
+        {
+                type: "POST",
+                url: "/Course/GetCourse",
+                data: courseEdit,
+                dataType: "json",
+
+                success: function (data) {
+                    if (data.msg != undefined) {
+                        alert(data.msg);
+                    }
+                    else {
+             
+                        $('#inputId').val(data.id);
+                        $('#txtName').val(data.name)
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(xhr.responseText);
+                    alert(thrownError);
+                    console.log(xhr);
+                }
+
+        });
+
+        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+
+    }
+
+
+
+
+
+    function editCourse() {       
+        var course = {
+            Id: $("#inputId").val(),
+            Name: $('#txtName').val()
+
+        };
+
+        $.ajax(
+        {
+                type: "POST",
+                url: "/Course/Edit",
+                data: course,
+                dataType: "json",
+
+                success: function (data) {
+                    alert(data.msg);
+
+                    if (data.state == true) {
+                        cargarListado();
+                        document.getElementById("formCourse").reset();
+                        $("#myModal").modal("hide")
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(xhr.responseText);
+                    alert(thrownError);
+                    console.log(xhr);
+                    console.log(sub.children);
+                }
+
+        });
+    }
+
+
+
+
+
+    function cargarListado() {
+        $.ajax(
+        {
+           type: "GET",
+           url: "/Course/ListCourse",
+           dataType: "json",
+
+           success: function (data) {
+               if (data.$values.length > 0) {
+                    let filasCourse = document.querySelector('#filasCourse');
+                    let filas = "";
+                    data.$values.forEach(objeto => {
+                        filas += `<tr>
+                                     <td>
+                                          <a href="#" onclick='editar(${objeto.id})' id="btnEditar" class="btn btn-secondary">Edit</a>
+                                          <a href="#" onclick='eliminar(${objeto.id})' class="btn btn-danger">Delete</a></td>
+                               <td>${objeto.id}</td>
+                               <td>${objeto.name}</td>
+                   
+                        </tr>`;
+                    });
+                    filasCourse.innerHTML = filas;
+
+                    
+               }
+           },
+
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert(xhr.status + " " + xhr.responseText);
+              console.log(xhr);
+            }
+
+        });
+    }
+
+
+
+
+  function saveCourse() {
+        var course = {
+            Id: 0,
+            Name: $('#txtName').val()
+
+        };
+        console.log(course);
+        console.log(JSON.stringify(course));
+      $.ajax(
+      {
+           type: "POST",
+           url: "/Course/Create",
+           data: course,
+           dataType: "json",
+
+           success: function (data) {
+               alert(data.msg);
+              
+               
+
+               if (data.state == true) {
+                   $("#myModal").modal("hide");
+                   document.getElementById("formCourse").reset();
+                   cargarListado();
+                    
+               }
+
+           },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(xhr.responseText);
+                    alert(thrownError);
+                    console.log(xhr);
+                }
+
+      });
+  }   
+
+
+
+
+
+
+    $(document).ready(function () {          
+        cargarListado();
+
+        $("#btnGuardar").click(function () {
+            if ($("#inputId").val() == "0")
+                saveCourse();
+               else
+                editCourse();
+        });
+
+        $("#myModal").on('hide.bs.modal', function () {
+            $('#inputId').val("0");
+            document.getElementById("formCourse").reset();
+        });
+
+
+    });
+
+
+</script>
+
+
+
+
+
+<div class="container" style="margin-top:20px;">
+
+  <table class="table">
+        <thead class="table table-warning">
+            <tr>
+                <th><a onclick="nuevo()" href="#" class="btn btn-primary">New</a></th>
+                <th>Id</th>
+                <th>Name</th>
+
+            </tr>
+        </thead>
+        <tbody id="filasCourse">
+
+        </tbody>       
+   </table>
+</div>
+
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 id="sub" class="modal-title">Editar Course</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+
+
+      <div class="tab-content">
+               
+              <form id="formCourse">
+                
+
+                    <div class="form-group col-md-12">
+                        <label for="id">ID</label>
+                        <input type="text" id="inputId" value="0" class="form-control alert-secondary" disabled />
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="txtName">Name</label>
+                        <input type="Text" class="form-control" id="txtName" placeholder="">
+                    </div>
+
+              </form>       
+      </div>
+
+
+      <div class="modal-footer">
+         <div class="mr-auto">
+            <button id="btnGuardar" class="btn btn-success">SAVE</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

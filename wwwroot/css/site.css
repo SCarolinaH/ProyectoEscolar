@@ -1,0 +1,332 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+     color: #fff;
+ 
+    
+  background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+/*////////////////////////////////////////////*/
+
+Previous DemoBest jQueryCodelab
+Tab Style : Demo 119
+Section 1
+Section 2
+Section 3
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.
+
+HTML (CSS Framwork: Bootstrap)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+<div class="container" >
+<div class="row" >
+<div class="col-md-6" >
+<div class="tab" role="tabpanel" >
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist" >
+<li role="presentation" class="active" > <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab" > Section 1</a > </li >
+<li role="presentation" > <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab" > Section 2</a > </li >
+<li role="presentation" > <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab" > Section 3</a > </li >
+</ul >
+<!-- Tab panes -->
+<div class="tab-content tabs" >
+<div role="tabpanel" class="tab-pane fade in active" id="Section1" >
+<p > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p >
+</div >
+<div role="tabpanel" class="tab-pane fade" id="Section2" >
+<h3 > SecKtion 2</h3 >
+<p > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p >
+</div >
+<div role="tabpanel" class="tab-pane fade" id="Section3" >
+<p > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p >
+</div >
+</div >
+</div >
+</div >
+</div >
+</div >
+CSS (Fonts required: Montserrat.)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.tab {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+    .tab .nav-tabs {
+        margin: 0;
+        border: none;
+        position: relative;
+    }
+
+        .tab .nav-tabs li a {
+            color: #333;
+            background-color: transparent;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+            text-transform: capitalize;
+            padding: 11px 18px;
+            margin: 0 10px 10px 0;
+            border-radius: 0;
+            border: 1px solid #eee;
+            display: block;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease 0s;
+        }
+
+            .tab .nav-tabs li.active a,
+            .tab .nav-tabs li a:hover,
+            .tab .nav-tabs li.active a:hover {
+                color: #fff;
+                background-color: transparent;
+                border: 1px solid #eee;
+            }
+
+            .tab .nav-tabs li a:before {
+                content: '';
+                background-color: #eee;
+                height: 100%;
+                width: 50%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: -1;
+                transition: all 0.3s;
+            }
+
+            .tab .nav-tabs li.active a:before,
+            .tab .nav-tabs li a:hover:before {
+                background-color: #9C3140;
+                width: 80%;
+                left: 10%;
+            }
+
+    .tab .tab-content {
+        color: #333;
+        background: linear-gradient(to right, transparent 50%, #eee 50%);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        line-height: 25px;
+        padding: 20px 25px;
+        border: 3px solid #9C3140;
+    }
+
+@media only screen and (max-width: 479px) {
+    .tab .nav-tabs li {
+        width: 100%;
+        text-align: center;
+    }
+
+        .tab .nav-tabs li a {
+            margin-right: 0;
+        }
+}
+
+JavaScript (Tab depend on jQuery and Bootstrap.)
+1
+2
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js" > </script >
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous" > </script >
+License Terms
+
+
+
+<style >
+section {
+    text-align: center;
+}
+
+#maintable {
+    width: 80%;
+    text-align: center;
+    margin: auto 10%;
+}
+
+.mitabla {
+    width: 100%;
+    padding: 20px;
+}
+
+    .mitabla thead {
+        background-color: gray;
+    }
+
+    .mitabla tfoot {
+        background-color: antiquewhite;
+    }
+
+</style >

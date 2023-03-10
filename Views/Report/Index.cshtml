@@ -1,0 +1,255 @@
+﻿
+<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+<script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+
+
+
+
+<h1>Report</h1>
+    <h2>@TempData["Mensaje"]</h2>
+
+
+<div class="container" style="margin-top:20px;">
+
+
+    <div class="form-group col-md-6">
+        <label>Student Code:</label>
+        <select id="cbStudentCode"  class="form-control"    asp-items="ViewBag.cbStudents1"></select>
+    </div>
+    
+
+    <div class="form-group col-md-6">
+        <label> Student Name:</label>
+        <select asp-for="@TempData["ID"]" class="form-control" id="cbName"    asp-items=" ViewBag.cbStudents"></select>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6">
+        <label>Gender</label>
+        <select id="cbGender" class="form-control"   asp-items=" ViewBag.cbGenders"></select>
+    </div>
+
+
+    <div class="form-group col-md-6">
+        <label>Grade</label>
+        <select id="cbGrade" class="form-control"   asp-items="ViewBag.cbGrades"></select>
+    </div>
+
+
+    <a id="exportPDF" class="btn btn-success" target="_blank" href="CrearPDF/Index/Id=0?Gender=&GradeId=0" >Exportar a PDF</a>
+
+    <a id="exportExcel" class="btn btn-success" href="#">Exportar a Excel</a>
+
+
+
+
+
+
+
+    <div id="vista1" class="form-group col-md-12">
+
+        <table id="Students" class="table">
+            <thead class="table table-warning">
+                <tr>
+                         
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Student Code</th>
+                    <th>Student Name</th>
+                    <th>Grade</th>
+                    <th>Courses</th>
+                    <th>Genders</th>
+                    <th>BirthDate</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+           <tbody id="filasStudentR">
+ 
+
+           </tbody>
+
+     
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+<script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+<script>
+
+
+    $("#cbStudentCode").change(function(){
+        var id = $("#cbStudentCode").val();
+
+        cargarTabla(id, "", 0);
+        $("#cbName").val(0);
+        $("#cbGender").val("Select an option");
+        $("#cbGrade").val(0);
+
+
+        const exportExcel = document.querySelector("#exportExcel");
+
+
+        const exportPDF = document.querySelector("#exportPDF");
+        exportPDF.href = `CrearPDF/Index/?Id=${id}&Gender=&GradeId=0`;
+    });
+
+    $("#cbName").change(function(){
+        var id = $("#cbName").val();
+
+        cargarTabla(id, "", 0);
+        $("#cbStudentCode").val(0);
+        $("#cbGender").val("Select an option");
+        $("#cbGrade").val(0);
+
+
+        const exportExcel = document.querySelector("#exportExcel");
+        
+
+        const exportPDF = document.querySelector("#exportPDF");
+        exportPDF.href = `CrearPDF/Index/?Id=${id}&Gender=&GradeId=0`;
+    });
+
+    $("#cbGender").change(function () {
+        var Gender = $("#cbGender").val();
+
+        cargarTabla(0, Gender, 0);
+        $("#cbStudentCode").val(0);
+        $("#cbName").val(0);
+        $("#cbGrade").val(0);
+
+
+        const exportExcel = document.querySelector("#exportExcel");
+       
+        const exportPDF = document.querySelector("#exportPDF");
+        exportPDF.href = `CrearPDF/Index/?Id=0&Gender=${Gender}&GradeId=0`;
+    });
+
+    $("#cbGrade").change(function () {
+        var grade = $("#cbGrade").val();
+
+        cargarTabla(0, "", grade);
+        $("#cbStudentCode").val(0);
+        $("#cbName").val(0);
+        $("#cbGender").val("Select an option");
+
+
+        const exportExcel = document.querySelector("#exportExcel");
+       
+
+        const exportPDF = document.querySelector("#exportPDF");
+        exportPDF.href = `CrearPDF/Index/?Id=0&Gender=&GradeId=`+grade;
+    });
+          
+
+    function cargarTabla(id, gender, gradeid){
+    let filtro = { Id: id, Gender: gender, GradeId: gradeid };
+        
+        $.ajax(
+        {
+                
+            type: "GET",
+            url: "/Report/ListStudentsReport",
+            dataType: "json",
+            data: filtro,
+
+            success: function (data) {
+                if (data.$values.length > 0) {
+                    let filasStudent = document.querySelector('#filasStudentR');
+                    let filas = "";
+                    let cont = 1;
+                    data.$values.forEach(objeto => {
+                        filas += `<tr>
+                            <td>${cont}</td>
+                            <td>${objeto.id}</td>
+                            <td>${objeto.studentCode}</td>
+                            <td>${objeto.name}</td>
+                            <td>${objeto.grade}</td>
+                            <td>${objeto.courses}</td>
+                            <td>${objeto.gender}</td>
+                            <td>${objeto.birthDate}</td>
+                            <td>${objeto.address}</td>
+                            <td>${objeto.phone}</td>
+                            <td>${objeto.status}</td>
+                        </tr>`;
+                        cont++;
+                    });
+                    filasStudent.innerHTML = filas;
+                }
+                else{
+                    let filasStudent = document.querySelector('#filasStudentR');
+                    filasStudent.innerHTML = "";
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " " + xhr.responseText);
+                console.log(xhr);
+            }
+
+        });
+    }
+
+    $(document).ready(function () {''
+        cargarTabla(0,"",0);
+    });
+
+</script>
+
+
+<!-- links para exportar a excel -->
+
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+  
+
+
+
+
+            
+ <Script>
+    const $exportExcel = document.querySelector("#exportExcel"),
+        $Students = document.querySelector("#Students");
+
+    $exportExcel.addEventListener("click", function () {
+        let tableExport = new TableExport($Students, {
+            exportButtons: false, // 
+            filename: "Reporte de Estudiantes", //Nombre del archivo de Excel
+            sheetname: "Reporte de Estudiantes", //Título de la hoja
+        });
+
+
+        let datos = tableExport.getExportData();
+        let preferenciasDocumento = datos.Students.xlsx;
+        tableExport.export2file(preferenciasDocumento.data, 
+        preferenciasDocumento.mimeType, preferenciasDocumento.filename, 
+        preferenciasDocumento.fileExtension, preferenciasDocumento.merges,
+        preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+
+
+
+
+
+
+    });
+
+
+
+</script>
+
+
+
+
+
+
