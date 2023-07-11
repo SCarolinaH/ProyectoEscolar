@@ -1,4 +1,5 @@
-![Calendario](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/0a14d8c4-abb5-4347-8b5d-07d37f29c5a1)
-# ProyectoEscolar
-Crud Básico 
+
+# APLICACIÓN ESCOLAR![Pantalla_Inicio](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/e71322f3-c330-4dc6-98ab-e32c8b6a3258)
+
+Creación de una solución Web con ASP.Net con el esquema MVC .NET 5.0
 
