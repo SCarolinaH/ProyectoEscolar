@@ -1,7 +1,23 @@
 
-# APLICACIÓN ESCOLAR!
+# DESCRIPCIÓN DEL PROYECTO
 
-Creación de una solución Web con ASP.Net con el esquema MVC .NET 5.0
+-  Creación de una solución Web con ASP.Net con el esquema MVC .NET 5.0
+
+-  En la cual contiene un CRUD Básico: Curso, Grado, Curso-Grado que permite  Crear, Modificar y Eliminar.
+   Pantalla de Estudiantes con un sistema de Pestañas en la cual se registran los datos personales de un estudiante y en la otra pestaña 
+   permite adjuntar archivos de cualquier tipo.
+
+-  Filtro que permite la busqueda por: Código, Nombre, Género ó Grado. 
+   Permite la exportación en formato PDF y EXCEL
+
+
+
+
+
+
+
+
+
 
 ![Pantalla_Inicio](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/2c863de6-1660-49b9-8a1e-482e5bf11ed0)
 
@@ -30,21 +46,28 @@ Agregar un Nuevo Curso-Grado, en el cual se selecciona de la lista desplegable u
 
 ![NuevoGrade2](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/75d5d316-1609-4537-8930-a363b331a184)
 
-Pantalla Estudiante
+Pantalla Estudiante:
 ![Pantalla_Estudiantes](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/f89f665b-432f-4466-afcf-c0755ba9701f)
 
-Pantalla Estudiante - Llenado de Formulario con Datos Personales
+Pantalla Estudiante: 
+
+Llenado de Formulario con Datos Personales.
 ![Pantalla_Estudiantes1](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/70cf9868-01d8-4b66-adb5-d567cd3afa8b)
 
-Pantalla Estudiante Subir archivos
+Pantalla Estudiante:
+
+Funcionalidad para adjuntar archivos de cualquier tipo y poder eliminarlos.
+
 ![Pantalla_EstudiantesArchivos](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/ba5a90c7-0a00-49ea-965b-e760fb514e61)
 
 Confirmación Estudiante nuevo ingresado con éxito
 ![Confirmacion_EstudianteIngresado](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/e07704c9-7105-4332-bcd9-fdf8442b3fe0)
 
-Pantalla Reporte
+Pantalla Reporte:
 
-Vista que muestre por medio de un filtro solo cierta informacion especifica ya sea: Codigo Estudiante, Nombre del Estudiante, Genero ó Grado.
+Filtro que permite la busqueda por: Código, Nombre, Género ó Grado. 
+
+Permite la exportación en formato PDF y EXCEL
 ![PantallaReporte](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/72cb0666-0238-43ad-8b2f-5e8c1d13cd5f)
 
 
