@@ -10,3 +10,6 @@ Pantalla Mantenimientos
 
 Lista de Courses
 ![Pantalla_Course1](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/c9e28d57-8a0d-460c-a0eb-094fe89985fc)
+
+Crear Nuevo Couse
+![NuevoCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/d8879332-7106-405a-9e9e-112e2993b7a2)
