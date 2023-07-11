@@ -39,6 +39,10 @@ Pantalla Estudiante - Llenado de Formulario con Datos Personales
 Pantalla Estudiante Subir archivos
 ![Pantalla_EstudiantesArchivos](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/ba5a90c7-0a00-49ea-965b-e760fb514e61)
 
+Confirmación Estudiante nuevo ingresado con éxito
+![Confirmacion_EstudianteIngresado](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/e07704c9-7105-4332-bcd9-fdf8442b3fe0)
+
+
 
 
 
