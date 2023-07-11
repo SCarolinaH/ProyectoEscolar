@@ -13,3 +13,7 @@ Lista de Courses
 
 Crear Nuevo Couse
 ![NuevoCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/d8879332-7106-405a-9e9e-112e2993b7a2)
+
+Confirmación de la creacion de un new Course
+![ConfirmacionNewCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/9c2f76c6-0d7a-45eb-9835-463b8762131d)
+
