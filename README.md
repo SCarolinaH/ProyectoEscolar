@@ -8,3 +8,5 @@ Creación de una solución Web con ASP.Net con el esquema MVC .NET 5.0
 Pantalla Mantenimientos
 ![Pantalla_Inicio2](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/84bce06f-9005-495c-a73c-0012669f983a)
 
+Lista de Courses
+![Pantalla_Course1](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/c9e28d57-8a0d-460c-a0eb-094fe89985fc)
