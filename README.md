@@ -8,7 +8,7 @@
    permite adjuntar archivos de cualquier tipo.
 
 -  Filtro que permite la busqueda por: Código, Nombre, Género ó Grado. 
-   Permite la exportación en formato PDF y EXCEL
+   Permite la exportación en formato PDF y EXCEL.
 
 
 
