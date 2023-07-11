@@ -17,3 +17,8 @@ Crear Nuevo Couse
 Confirmación de la creacion de un new Course
 ![ConfirmacionNewCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/9c2f76c6-0d7a-45eb-9835-463b8762131d)
 
+Lista actualizada de Courses
+![Pantalla_CourseActualizada](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/fd108a6e-946d-4451-b222-b08edbe23415)
+
+
+
