@@ -42,6 +42,12 @@ Pantalla Estudiante Subir archivos
 Confirmación Estudiante nuevo ingresado con éxito
 ![Confirmacion_EstudianteIngresado](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/e07704c9-7105-4332-bcd9-fdf8442b3fe0)
 
+Pantalla Reporte
+
+Vista que muestre por medio de un filtro solo cierta informacion especifica ya sea: Codigo Estudiante, Nombre del Estudiante, Genero ó Grado.
+![PantallaReporte](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/72cb0666-0238-43ad-8b2f-5e8c1d13cd5f)
+
+
 
 
 
