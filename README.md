@@ -30,11 +30,15 @@ Agregar un Nuevo Curso-Grado, en el cual se selecciona de la lista desplegable u
 
 ![NuevoGrade2](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/75d5d316-1609-4537-8930-a363b331a184)
 
-Pantalla Estudiantes
+Pantalla Estudiante
 ![Pantalla_Estudiantes](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/f89f665b-432f-4466-afcf-c0755ba9701f)
 
-Pantalla Estudiantes - Detalles
+Pantalla Estudiante - Llenado de Formulario con Datos Personales
 ![Pantalla_Estudiantes1](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/70cf9868-01d8-4b66-adb5-d567cd3afa8b)
+
+Pantalla Estudiante Subir archivos
+![Pantalla_EstudiantesArchivos](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/ba5a90c7-0a00-49ea-965b-e760fb514e61)
+
 
 
 
