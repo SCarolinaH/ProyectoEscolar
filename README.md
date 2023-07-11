@@ -20,5 +20,9 @@ Confirmación de la creacion de un new Course
 Lista actualizada de Courses
 ![Pantalla_CourseActualizada](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/fd108a6e-946d-4451-b222-b08edbe23415)
 
+Confirmación de Course borrado
+![ConfirmacionBorrarCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/7b171abe-0662-4dc1-b40a-732a2eaf7d46)
+
+
 
 
