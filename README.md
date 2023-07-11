@@ -23,6 +23,14 @@ Lista actualizada de Courses
 Confirmación de Course borrado
 ![ConfirmacionBorrarCourse](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/7b171abe-0662-4dc1-b40a-732a2eaf7d46)
 
+Agregar un Nuevo Course Grade, en el cual se selecciona de la lista desplegable un Grade y Course
+![NuevoGrade](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/2c32c68d-e323-468a-9e21-f4fbe60e9459)
+
+![NuevoGrade1](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/efed91cf-fa5d-4291-82c0-6017c0dc1d5e)
+
+![NuevoGrade2](https://github.com/SCarolinaH/ProyectoEscolar/assets/108714851/75d5d316-1609-4537-8930-a363b331a184)
+
+
 
 
 
